@@ -1,0 +1,155 @@
+/* ── Proof Module ── */
+
+.proof-module {
+  overflow: hidden;
+}
+
+.proof-intro .complexity-chip {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.1fr);
+  gap: 12px;
+}
+
+.proof-grid > .code-trace-panel,
+.proof-grid > .proof-result-card {
+  grid-column: 1 / -1;
+}
+
+.sat-proof-grid > .proof-result-card {
+  grid-column: 1 / -1;
+}
+
+.proof-step-panel {
+  display: grid;
+  gap: 8px;
+}
+
+.proof-step {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.025);
+  padding: 10px;
+}
+
+.proof-step > span {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 1px solid currentColor;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+.proof-step strong {
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.proof-step p {
+  margin: 4px 0 0;
+  color: #a9c5cf;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.proof-step.active {
+  border-color: var(--cyan);
+  box-shadow: inset 2px 0 0 var(--cyan), 0 0 14px rgba(50, 230, 255, 0.08);
+}
+
+.proof-step.active > span {
+  color: var(--cyan);
+}
+
+.proof-step.complete {
+  border-color: rgba(110, 255, 158, 0.32);
+}
+
+.proof-step.complete > span {
+  color: var(--green);
+}
+
+.proof-input-card textarea {
+  width: 100%;
+  min-height: 86px;
+  resize: vertical;
+  border: 1px solid rgba(50, 230, 255, 0.18);
+  background: rgba(3, 5, 10, 0.88);
+  color: var(--text);
+  padding: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.implication-graph-card select {
+  border: 1px solid rgba(50, 230, 255, 0.32);
+  background: rgba(3, 5, 10, 0.9);
+  color: var(--cyan);
+  padding: 5px 8px;
+  font-family: var(--font-mono);
+}
+
+.literal-node-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
+  gap: 8px;
+}
+
+.literal-node {
+  display: grid;
+  gap: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.025);
+  padding: 8px;
+}
+
+.literal-node.highlighted {
+  border-color: var(--yellow);
+  background: rgba(255, 209, 102, 0.06);
+  box-shadow: 0 0 12px rgba(255, 209, 102, 0.08);
+}
+
+.literal-node strong {
+  color: var(--text);
+  font-family: var(--font-mono);
+}
+
+.literal-node span {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.implication-edge-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.implication-edge-list code {
+  border: 1px solid rgba(50, 230, 255, 0.14);
+  color: var(--cyan);
+  padding: 4px 6px;
+  font-size: 10px;
+}
+
+.proof-result-card p {
+  margin: 0;
+  color: #c8dbe2;
+  font-size: 14px;
+  line-height: 1.6;
+}

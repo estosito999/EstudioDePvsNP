@@ -1,0 +1,223 @@
+/* ── Randomization Module ── */
+
+.randomization-module {
+  overflow: hidden;
+}
+
+.randomization-intro h2 {
+  max-width: 980px;
+  color: #e7fbff;
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+.random-class-selector {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.random-class-card {
+  display: grid;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--text);
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.random-class-card.active {
+  border-color: var(--cyan);
+  background: linear-gradient(90deg, rgba(50, 230, 255, 0.13), rgba(182, 130, 255, 0.035));
+  box-shadow: inset 2px 0 0 var(--cyan);
+}
+
+.random-class-card strong {
+  font-family: var(--font-mono);
+  font-size: 16px;
+}
+
+.random-class-card span {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.randomization-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+  gap: 12px;
+}
+
+.random-tree-card,
+.derandomization-advanced-card {
+  grid-column: 1 / -1;
+}
+
+.random-tree-svg {
+  width: 100%;
+  height: 300px;
+  border: 1px solid rgba(50, 230, 255, 0.14);
+  background:
+    radial-gradient(circle at 50% 20%, rgba(50, 230, 255, 0.09), transparent 28%),
+    linear-gradient(rgba(50, 230, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(50, 230, 255, 0.035) 1px, transparent 1px),
+    rgba(3, 5, 10, 0.7);
+  background-size: auto, 20px 20px, 20px 20px, auto;
+}
+
+.random-tree-edge {
+  stroke: rgba(50, 230, 255, 0.42);
+  stroke-width: 2;
+}
+
+.random-bit-label {
+  fill: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.random-tree-node circle {
+  fill: rgba(5, 8, 14, 0.96);
+  stroke: rgba(50, 230, 255, 0.6);
+  stroke-width: 1.6;
+}
+
+.random-tree-node.root circle {
+  stroke: var(--purple);
+  filter: drop-shadow(0 0 8px rgba(182, 130, 255, 0.3));
+}
+
+.random-tree-node text,
+.random-tree-leaf text {
+  fill: var(--text);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-anchor: middle;
+}
+
+.random-tree-leaf rect {
+  fill: rgba(5, 8, 14, 0.96);
+  stroke: rgba(255, 255, 255, 0.18);
+}
+
+.random-tree-leaf.accept rect {
+  stroke: rgba(110, 255, 158, 0.65);
+}
+
+.random-tree-leaf.reject rect {
+  stroke: rgba(255, 209, 102, 0.45);
+}
+
+.random-tree-leaf.error rect {
+  stroke: rgba(255, 77, 109, 0.75);
+}
+
+.random-tree-note,
+.prg-card p {
+  margin: 10px 0 0;
+  color: #c8dbe2;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.error-meter {
+  height: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 77, 109, 0.24);
+  background: rgba(255, 77, 109, 0.08);
+  margin-bottom: 12px;
+}
+
+.error-meter span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--red), var(--yellow));
+}
+
+.random-error-table td:first-child {
+  color: var(--cyan);
+  font-family: var(--font-mono);
+}
+
+.deterministic-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.deterministic-comparison-grid article {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.025);
+  padding: 12px;
+}
+
+.deterministic-comparison-grid article.probabilistic {
+  border-color: rgba(50, 230, 255, 0.25);
+  background: rgba(50, 230, 255, 0.05);
+}
+
+.deterministic-comparison-grid span {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.deterministic-comparison-grid p,
+.advanced-topic-list p {
+  margin: 8px 0 0;
+  color: #c8dbe2;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.prg-pipeline {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.prg-stage {
+  border: 1px solid rgba(182, 130, 255, 0.22);
+  background: rgba(182, 130, 255, 0.055);
+  padding: 10px;
+}
+
+.prg-stage span {
+  display: inline-grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border: 1px solid var(--purple);
+  color: var(--purple);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+
+.prg-stage strong,
+.advanced-topic-list strong {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.advanced-topic-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.advanced-topic-list article {
+  border: 1px solid rgba(255, 209, 102, 0.18);
+  background: rgba(255, 209, 102, 0.045);
+  padding: 12px;
+}

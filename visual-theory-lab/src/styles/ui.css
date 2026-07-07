@@ -1,0 +1,71 @@
+/* ── UI Components ── */
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  border: 1px solid currentColor;
+  padding: 3px 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.status-badge.green { color: var(--green); }
+.status-badge.cyan { color: var(--cyan); }
+.status-badge.purple { color: var(--purple); }
+.status-badge.red { color: var(--red); }
+.status-badge.yellow { color: var(--yellow); }
+
+.toggle-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(255, 255, 255, 0.03);
+  color: #9eb6c0;
+  padding: 6px 9px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.toggle-button span {
+  width: 8px;
+  height: 8px;
+  border: 1px solid currentColor;
+  background: transparent;
+}
+
+.toggle-button.active {
+  border-color: rgba(50, 230, 255, 0.68);
+  color: var(--cyan);
+  box-shadow: 0 0 15px rgba(50, 230, 255, 0.09);
+}
+
+.toggle-button.active span {
+  background: currentColor;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.lab-tab,
+.verification-actions button {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(255, 255, 255, 0.03);
+  color: #9eb6c0;
+  padding: 7px 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.lab-tab.active,
+.verification-actions button:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  box-shadow: 0 0 15px rgba(50, 230, 255, 0.1);
+}

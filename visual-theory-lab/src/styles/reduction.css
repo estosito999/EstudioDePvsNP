@@ -1,0 +1,166 @@
+/* ── Reduction Module ── */
+
+.reduction-module {
+  overflow: hidden;
+}
+
+.reduction-selector {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.reduction-option {
+  display: grid;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--text);
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.reduction-option strong {
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.reduction-option span {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.reduction-option.active {
+  border-color: var(--cyan);
+  background: linear-gradient(90deg, rgba(50, 230, 255, 0.12), rgba(50, 230, 255, 0.025));
+  box-shadow: inset 2px 0 0 var(--cyan);
+}
+
+.reduction-option.advanced:not(.active) {
+  border-color: rgba(255, 209, 102, 0.28);
+}
+
+.reduction-visual-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+  gap: 12px;
+}
+
+.reduction-visual-grid > .reduction-explanation-card {
+  grid-column: 1 / -1;
+}
+
+.reduction-step-panel {
+  display: grid;
+  gap: 8px;
+}
+
+.reduction-step {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--text);
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.reduction-step > span {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 1px solid currentColor;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+.reduction-step strong {
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.reduction-step p {
+  margin: 4px 0 0;
+  color: #a9c5cf;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.reduction-step.active {
+  border-color: var(--purple);
+  box-shadow: inset 2px 0 0 var(--purple), 0 0 14px rgba(182, 130, 255, 0.08);
+}
+
+.reduction-step.active > span {
+  color: var(--purple);
+}
+
+.reduction-step.complete {
+  border-color: rgba(110, 255, 158, 0.3);
+}
+
+.reduction-step.complete > span {
+  color: var(--green);
+}
+
+.reduction-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 54px minmax(0, 1fr) 38px minmax(0, 1fr);
+  gap: 8px;
+  align-items: stretch;
+}
+
+.reduction-flow article {
+  border: 1px solid rgba(50, 230, 255, 0.16);
+  background: rgba(3, 5, 10, 0.7);
+  padding: 10px;
+}
+
+.reduction-flow article.transform {
+  border-color: rgba(182, 130, 255, 0.32);
+  background: rgba(182, 130, 255, 0.05);
+}
+
+.reduction-flow span {
+  display: block;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.reduction-flow strong {
+  display: block;
+  margin: 7px 0;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 16px;
+}
+
+.reduction-flow p,
+.reduction-explanation-card p {
+  margin: 0;
+  color: #c8dbe2;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.reduction-arrow {
+  display: grid;
+  place-items: center;
+  color: var(--purple);
+  font-family: var(--font-mono);
+  font-size: 20px;
+}

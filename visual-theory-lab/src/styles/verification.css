@@ -1,0 +1,220 @@
+/* ── Verification Module ── */
+
+.verification-module {
+  overflow: hidden;
+}
+
+.verification-toolbar {
+  min-height: 96px;
+}
+
+.verification-content {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 14px;
+}
+
+.verification-intro {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(50, 230, 255, 0.14);
+  background: linear-gradient(90deg, rgba(50, 230, 255, 0.06), rgba(182, 130, 255, 0.035));
+  padding: 12px;
+}
+
+.verification-intro h2,
+.verification-card h2 {
+  margin: 0;
+  font-family: var(--font-mono);
+  letter-spacing: -0.03em;
+}
+
+.verification-intro h2 {
+  font-size: 22px;
+}
+
+.verification-intro p:not(.eyebrow) {
+  margin: 6px 0 0;
+  color: #c8dbe2;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.verification-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.verification-grid.two-columns {
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+}
+
+.verification-grid > .code-trace-panel,
+.verification-grid > .growth-card {
+  grid-column: 1 / -1;
+}
+
+.verification-card,
+.code-trace-panel {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(3, 5, 10, 0.62);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  padding: 12px;
+}
+
+.verification-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.verification-card h2 {
+  font-size: 17px;
+}
+
+.complexity-chip {
+  border: 1px solid var(--green);
+  color: var(--green);
+  padding: 5px 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.complexity-chip.danger {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+/* ── Weighted Graph / Bellman-Ford ── */
+
+.weighted-graph-canvas {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  border: 1px solid rgba(50, 230, 255, 0.16);
+  background:
+    linear-gradient(rgba(50, 230, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(50, 230, 255, 0.035) 1px, transparent 1px),
+    rgba(2, 5, 10, 0.7);
+  background-size: 20px 20px;
+}
+
+.weighted-graph-canvas svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bf-edge {
+  stroke: rgba(125, 245, 255, 0.38);
+  stroke-width: 2;
+}
+
+.bf-edge.active {
+  stroke: var(--yellow);
+  stroke-width: 3;
+}
+
+.bf-edge.relaxed {
+  stroke: var(--green);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 5px rgba(110, 255, 158, 0.45));
+}
+
+.graph-node {
+  position: absolute;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border: 1px solid var(--cyan);
+  background: rgba(5, 8, 14, 0.95);
+  color: var(--text);
+  font-family: var(--font-mono);
+  cursor: grab;
+}
+
+.graph-node.source {
+  border-color: var(--green);
+  color: var(--green);
+  box-shadow: 0 0 16px rgba(110, 255, 158, 0.18);
+}
+
+.edge-weight-input {
+  position: absolute;
+  width: 42px;
+  border: 1px solid rgba(255, 209, 102, 0.5);
+  background: rgba(3, 5, 10, 0.92);
+  color: var(--yellow);
+  padding: 3px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-align: center;
+}
+
+.verification-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.verification-actions span,
+.assignment-readout span {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.distance-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+}
+
+.distance-table th,
+.distance-table td {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 9px;
+  text-align: left;
+}
+
+.distance-table th {
+  color: var(--cyan);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.distance-table td {
+  color: #d9f7fd;
+}
+
+.concept-message {
+  margin-top: 12px;
+  border-left: 2px solid currentColor;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.concept-message.polynomial {
+  color: var(--green);
+}
+
+.concept-message.warning {
+  color: var(--yellow);
+}

@@ -1,0 +1,874 @@
+/* ═══════════════════════════════════════════
+   Responsive Queries
+   Desktop (>1180px)  — unchanged 3-column layout
+   Tablet  (900-1180) — inspector below, selectors compact
+   Tablet  (600-900)  — sidebar collapsible, single-col workspace
+   Mobile  (<600px)   — drawer nav, nav buttons, full-screen graph
+   ═══════════════════════════════════════════ */
+
+/* ── ≤ 1180px — tablet landscape ── */
+
+@media (max-width: 1180px) {
+
+  .app-shell {
+    grid-template-columns: 210px minmax(0, 1fr);
+    grid-template-rows: auto minmax(480px, 1fr) minmax(360px, 0.85fr);
+    grid-template-areas:
+      "top top"
+      "side main"
+      "inspector inspector";
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
+
+  .sidebar-panel {
+    max-height: calc(100vh - 80px);
+  }
+
+  .inspector-panel,
+  .workspace-panel {
+    min-height: 360px;
+  }
+
+  .universe-canvas {
+    min-height: 400px;
+  }
+
+  /* Collapse multi-grid layouts */
+  .sat-workbench-grid,
+  .solver-grid,
+  .algebraic-lab-grid,
+  .polynomial-equation-list,
+  .randomization-grid,
+  .deterministic-comparison-grid,
+  .prg-pipeline,
+  .advanced-topic-list,
+  .frontier-selector-grid,
+  .frontier-main-grid,
+  .frontier-fact-grid,
+  .frontier-explanation-grid,
+  .frontier-topic-list,
+  .universe-workbench,
+  .universe-route-controls,
+  .proof-console-grid,
+  .set-venn-grid,
+  .algebraic-concept-selector,
+  .random-class-selector,
+  .reduction-selector,
+  .reduction-visual-grid,
+  .proof-grid,
+  .verification-grid.two-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .reduction-flow,
+  .algebraic-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .algebraic-flow .reduction-arrow,
+  .reduction-arrow {
+    min-height: 30px;
+  }
+
+  .set-venn-header,
+  .set-venn-group-title {
+    flex-direction: column;
+  }
+
+  .set-venn-group-title span {
+    max-width: none;
+    text-align: left;
+  }
+
+  .set-venn-group {
+    min-height: auto;
+  }
+
+  .set-venn-root-stack {
+    overflow: visible;
+  }
+
+  .set-venn-status-row {
+    justify-content: flex-start;
+  }
+
+  /* Resize selectors */
+  .algorithm-selector {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .automata-model-selector {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .proof-system-selector {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .circuit-function-selector {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .reduction-selector {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── ≤ 900px — tablet portrait ── */
+
+@media (max-width: 900px) {
+
+  .app-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      "top"
+      "side"
+      "main"
+      "inspector";
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .sidebar-panel {
+    max-height: 200px;
+    overflow: auto;
+  }
+
+  .module-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .module-item small {
+    display: none;
+  }
+
+  .sidebar-note {
+    display: none;
+  }
+
+  .top-status .status-badge:nth-child(2) {
+    display: none;
+  }
+
+  .algorithm-selector {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .automata-model-selector {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .proof-system-selector {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .circuit-function-selector {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .algebraic-concept-selector {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .random-class-selector {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .set-venn-shell {
+    padding: 12px;
+  }
+}
+
+/* ── ≤ 768px — small tablet / large phone ── */
+
+@media (max-width: 768px) {
+
+  .app-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "top"
+      "side"
+      "main"
+      "inspector";
+    height: 100dvh;
+    padding: 6px;
+    gap: 6px;
+    overflow: hidden;
+  }
+
+  .mobile-hamburger {
+    display: flex;
+  }
+
+  /* Single-panel toggle */
+  .app-shell.mobile-sidebar .workspace-panel,
+  .app-shell.mobile-sidebar .inspector-panel,
+  .app-shell.mobile-workspace .sidebar-panel,
+  .app-shell.mobile-workspace .inspector-panel,
+  .app-shell.mobile-inspector .sidebar-panel,
+  .app-shell.mobile-inspector .workspace-panel {
+    display: none;
+  }
+
+  .app-shell.mobile-sidebar .sidebar-panel,
+  .app-shell.mobile-workspace .workspace-panel,
+  .app-shell.mobile-inspector .inspector-panel {
+    display: flex;
+  }
+
+  .sidebar-panel,
+  .workspace-panel,
+  .inspector-panel {
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+
+  /* ── TopBar ── */
+
+  .top-bar {
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 4px 8px;
+    min-height: var(--touch-min);
+  }
+
+  .brand-mark {
+    width: 30px;
+    height: 24px;
+    font-size: 10px;
+  }
+
+  .brand-block strong {
+    font-size: 12px;
+  }
+
+  .brand-block span {
+    display: none;
+  }
+
+  .top-status .status-text {
+    font-size: var(--text-xs);
+  }
+
+  .top-status .status-badge {
+    font-size: 8px;
+    padding: 2px 5px;
+    min-height: 20px;
+  }
+
+  .top-status .status-badge:nth-child(1),
+  .top-status .status-badge:nth-child(2) {
+    display: none;
+  }
+
+  /* ── Sidebar ── */
+
+  .sidebar-panel {
+    padding: 10px;
+    overflow: auto;
+  }
+
+  .panel-title-row {
+    margin-bottom: 8px;
+  }
+
+  .panel-title-row h2 {
+    font-size: 20px;
+  }
+
+  .module-list {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .module-item {
+    padding: 10px 8px;
+    min-height: var(--touch-min);
+  }
+
+  /* ── Module toolbar ── */
+
+  .module-toolbar {
+    flex-direction: column;
+    gap: 8px;
+    min-height: auto;
+    padding: 10px;
+  }
+
+  .module-toolbar h1 {
+    font-size: 18px;
+  }
+
+  .toolbar-actions {
+    justify-content: flex-start;
+    max-width: none;
+  }
+
+  .toolbar-actions button,
+  .toolbar-actions .toggle-button {
+    min-height: var(--touch-min);
+  }
+
+  /* ── Selectors ── */
+
+  .algorithm-selector {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .automata-model-selector,
+  .proof-system-selector,
+  .circuit-function-selector,
+  .reduction-selector,
+  .random-class-selector,
+  .frontier-topic-list {
+    grid-template-columns: 1fr;
+  }
+
+  .algebraic-concept-selector {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .frontier-main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .frontier-selector-group.barrier .frontier-topic-list {
+    grid-template-columns: 1fr;
+  }
+
+  .algorithm-option,
+  .automata-model-card,
+  .proof-system-card,
+  .circuit-function-card,
+  .reduction-option,
+  .random-class-card,
+  .algebraic-concept-card,
+  .frontier-topic-card {
+    min-height: var(--touch-min);
+  }
+
+  /* ── Grids → single column ── */
+
+  .boolean-switch-grid,
+  .tm-readout-grid,
+  .solver-grid,
+  .clause-grid,
+  .sat-clause-list,
+  .algorithm-facts-grid,
+  .deterministic-comparison-grid,
+  .frontier-fact-grid,
+  .frontier-explanation-grid,
+  .universe-layer-grid,
+  .universe-route-controls,
+  .code-reference-list,
+  .proof-step-panel,
+  .reduction-step-panel,
+  .algorithm-step-panel,
+  .literal-node-grid,
+  .sat-variable-grid,
+  .circuit-layer-grid,
+  .circuit-lab-grid,
+  .polynomial-equation-list,
+  .prg-pipeline {
+    grid-template-columns: 1fr;
+  }
+
+  /* ── Venn ── */
+
+  .set-venn-shell {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .set-venn-group,
+  .venn-box {
+    padding: 10px;
+  }
+
+  .venn-box {
+    min-height: 96px;
+    border-radius: 12px;
+  }
+
+  .venn-box .venn-box {
+    margin-left: 6px;
+    min-height: 84px;
+  }
+
+  .venn-box-header {
+    flex-direction: column;
+  }
+
+  .venn-box-header strong {
+    font-size: 14px;
+  }
+
+  .set-venn-header h2 {
+    font-size: 17px;
+  }
+
+  /* ── Inspector ── */
+
+  .inspector-panel {
+    padding: 10px;
+  }
+
+  .inspector-section {
+    padding: 10px 0;
+  }
+
+  .profile-chart {
+    height: 140px;
+  }
+
+  .code-reference-grid {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  /* ── Steps ── */
+
+  .proof-step,
+  .reduction-step,
+  .algorithm-step {
+    grid-template-columns: 24px 1fr;
+    gap: 6px;
+    padding: 8px;
+  }
+
+  .proof-step > span,
+  .reduction-step > span,
+  .algorithm-step > span {
+    width: 22px;
+    height: 22px;
+    font-size: 11px;
+  }
+
+  /* ── Console ── */
+
+  .console-line {
+    grid-template-columns: 60px 50px 1fr;
+    font-size: var(--text-xs);
+  }
+
+  .console-header {
+    font-size: 10px;
+    min-height: 30px;
+    padding: 0 8px;
+  }
+
+  /* ── Proof Console ── */
+
+  .proof-console-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-console-input-row {
+    flex-wrap: wrap;
+  }
+
+  .proof-console-input-row input {
+    min-width: 0;
+    width: 100%;
+  }
+
+  /* ── Universe & Canvases ── */
+
+  .universe-workbench {
+    grid-template-columns: 1fr;
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .universe-canvas {
+    min-height: 300px;
+  }
+
+  .universe-canvas-shell {
+    min-height: 300px;
+  }
+
+  .universe-hud {
+    max-width: 90%;
+  }
+
+  .universe-hud span,
+  .universe-hud strong {
+    font-size: 9px;
+    padding: 3px 5px;
+  }
+
+  .universe-route-readout span {
+    font-size: 9px;
+    padding: 3px 5px;
+  }
+
+  .weighted-graph-canvas {
+    height: 220px;
+  }
+
+  .algorithm-graph-canvas {
+    height: 200px;
+  }
+
+  .resolution-svg {
+    height: 240px;
+  }
+
+  .random-tree-svg {
+    height: 220px;
+  }
+
+  /* ── Complexity View ── */
+
+  .complexity-view-tabs {
+    padding: 6px 8px;
+    gap: 4px;
+  }
+
+  .complexity-view-tabs button {
+    font-size: 10px;
+    padding: 6px 8px;
+  }
+
+  .complexity-universe-topbar {
+    left: 6px;
+    top: 6px;
+    max-width: calc(100% - 12px);
+    padding: 6px;
+  }
+
+  .complexity-universe-topbar button {
+    font-size: 9px;
+    padding: 6px 8px;
+    min-height: var(--touch-min);
+  }
+
+  .complexity-universe-legend {
+    left: 6px;
+    bottom: 8px;
+    padding: 6px;
+  }
+
+  .complexity-universe-readout {
+    right: 6px;
+    bottom: 8px;
+    width: auto;
+    max-width: calc(100% - 12px);
+  }
+
+  .math-symbol-legend {
+    right: 6px;
+    bottom: 90px;
+    padding: 5px 7px;
+  }
+
+  /* ── Graph overlays ── */
+
+  .graph-zone-strip {
+    left: 6px;
+    top: 6px;
+    max-width: calc(100% - 12px);
+    padding: 5px;
+    gap: 4px;
+  }
+
+  .graph-zone-chip {
+    font-size: 8px;
+    padding: 3px 5px;
+  }
+
+  .graph-stats-panel {
+    right: 6px;
+    top: 6px;
+    padding: 5px 7px;
+  }
+
+  .graph-diagnostics-panel {
+    right: 6px;
+    bottom: 8px;
+    width: auto;
+    max-width: calc(100% - 12px);
+    padding: 7px;
+  }
+
+  .relation-legend-panel {
+    left: 6px;
+    bottom: 8px;
+    padding: 6px;
+  }
+
+  /* ── Turing ── */
+
+  .tape-cell {
+    width: 40px;
+    min-width: 40px;
+    height: 46px;
+  }
+
+  .tape-cell strong {
+    font-size: 15px;
+  }
+
+  .tm-readout-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* ── Misc ── */
+
+  .verification-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .verification-actions button {
+    min-height: var(--touch-min);
+  }
+
+  .code-trace-block code {
+    grid-template-columns: 28px 1fr;
+    font-size: 12px;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .graph-node {
+    width: 38px;
+    height: 38px;
+    font-size: 11px;
+  }
+
+  .complexity-edge-label {
+    max-width: 110px;
+    font-size: 9px;
+  }
+
+  .complexity-node-label strong {
+    font-size: 14px;
+  }
+
+  .lab-tab {
+    min-height: var(--touch-min);
+  }
+
+  select,
+  input,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* ── ≤ 600px — phone ── */
+
+@media (max-width: 600px) {
+
+  .app-shell {
+    padding: 4px;
+    gap: 4px;
+  }
+
+  .top-bar {
+    padding: 4px 6px;
+    gap: 4px;
+  }
+
+  .mobile-nav-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .mobile-nav-btn {
+    flex: 1;
+    text-align: center;
+    font-size: 10px;
+    padding: 8px 4px;
+  }
+
+  .mobile-hamburger {
+    display: none;
+  }
+
+  .brand-block strong {
+    font-size: 11px;
+  }
+
+  .brand-mark {
+    width: 26px;
+    height: 22px;
+    font-size: 9px;
+  }
+
+  .top-status .status-text {
+    font-size: 9px;
+  }
+
+  .module-toolbar h1 {
+    font-size: 16px;
+  }
+
+  .toolbar-actions {
+    gap: 4px;
+  }
+
+  .set-venn-shell {
+    padding: 6px;
+    gap: 6px;
+  }
+
+  .venn-box {
+    min-height: 84px;
+    padding: 8px;
+    border-radius: 10px;
+  }
+
+  .venn-box .venn-box {
+    margin-left: 4px;
+    min-height: 72px;
+  }
+
+  .inspector-panel {
+    padding: 8px;
+  }
+
+  .inspector-section p {
+    font-size: var(--text-sm);
+  }
+
+  .code-trace-block code {
+    grid-template-columns: 22px 1fr;
+    font-size: 11px;
+    padding: 1px 4px;
+  }
+
+  .distance-table th,
+  .distance-table td {
+    padding: 4px;
+    font-size: 10px;
+  }
+
+  .complexity-view-tabs button {
+    font-size: 9px;
+    padding: 5px 6px;
+  }
+
+  .universe-canvas {
+    min-height: 260px;
+  }
+
+  .universe-canvas-shell {
+    min-height: 260px;
+  }
+
+  .algorithm-graph-canvas {
+    height: 180px;
+  }
+
+  .weighted-graph-canvas {
+    height: 180px;
+  }
+
+  .resolution-svg {
+    height: 200px;
+  }
+
+  .random-tree-svg {
+    height: 180px;
+  }
+
+  .proof-console-input-row input {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .status-badge {
+    font-size: 8px;
+    padding: 2px 5px;
+    min-height: var(--touch-min);
+  }
+
+  .reduction-flow strong {
+    font-size: 14px;
+  }
+}
+
+/* ── ≤ 400px — small phone ── */
+
+@media (max-width: 400px) {
+
+  .app-shell {
+    padding: 3px;
+    gap: 3px;
+  }
+
+  .top-bar {
+    padding: 3px 4px;
+  }
+
+  .brand-block strong {
+    font-size: 10px;
+  }
+
+  .brand-mark {
+    width: 24px;
+    height: 20px;
+    font-size: 8px;
+  }
+
+  .module-toolbar h1 {
+    font-size: 15px;
+  }
+
+  .venn-box {
+    min-height: 76px;
+    padding: 6px;
+    border-radius: 8px;
+  }
+
+  .venn-box .venn-box {
+    margin-left: 3px;
+    min-height: 64px;
+  }
+
+  .venn-box-header strong {
+    font-size: 12px;
+  }
+
+  .universe-canvas {
+    min-height: 220px;
+  }
+
+  .universe-canvas-shell {
+    min-height: 220px;
+  }
+
+  .complexity-view-tabs button {
+    padding: 4px 5px;
+    font-size: 8px;
+  }
+
+  .inspector-panel {
+    padding: 6px;
+  }
+
+  .profile-chart {
+    height: 110px;
+  }
+
+  .graph-zone-chip {
+    font-size: 7px;
+    padding: 2px 4px;
+  }
+
+  .graph-stats-panel strong {
+    font-size: 11px;
+  }
+}

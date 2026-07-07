@@ -1,0 +1,144 @@
+/* ── Graph Overlays (zone, stats, legend, diagnostics) ── */
+
+.graph-zone-strip,
+.graph-stats-panel,
+.relation-legend-panel,
+.graph-diagnostics-panel {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  border: 1px solid rgba(50, 230, 255, 0.15);
+  background: rgba(3, 5, 10, 0.76);
+  box-shadow: 0 0 22px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(10px);
+}
+
+.graph-zone-strip {
+  left: 12px;
+  top: 12px;
+  display: flex;
+  max-width: calc(100% - 410px);
+  gap: 7px;
+  flex-wrap: wrap;
+  padding: 8px;
+}
+
+.graph-zone-chip {
+  border: 1px solid currentColor;
+  padding: 4px 6px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.graph-zone-chip.cyan { color: var(--cyan); background: rgba(50, 230, 255, 0.06); }
+.graph-zone-chip.red { color: var(--red); background: rgba(255, 77, 109, 0.06); }
+.graph-zone-chip.purple { color: var(--purple); background: rgba(182, 130, 255, 0.06); }
+.graph-zone-chip.green { color: var(--green); background: rgba(110, 255, 158, 0.06); }
+.graph-zone-chip.yellow { color: var(--yellow); background: rgba(255, 209, 102, 0.06); }
+
+.graph-stats-panel {
+  right: 12px;
+  top: 12px;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 4px 8px;
+  padding: 8px 10px;
+  align-items: baseline;
+}
+
+.graph-stats-panel strong {
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 16px;
+}
+
+.graph-stats-panel span {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.relation-legend-panel {
+  left: 12px;
+  bottom: 14px;
+  display: grid;
+  gap: 6px;
+  padding: 9px;
+}
+
+.relation-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #c8dbe2;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.relation-legend-item i {
+  display: block;
+  width: 28px;
+  height: 0;
+  border-top: 2px solid currentColor;
+}
+
+.relation-legend-item.inclusion { color: var(--cyan); }
+.relation-legend-item.reduction { color: var(--red); }
+.relation-legend-item.membership { color: var(--green); }
+.relation-legend-item.open { color: var(--yellow); }
+.relation-legend-item.separation { color: var(--red); }
+.relation-legend-item.conceptual { color: var(--purple); }
+.relation-legend-item.reduction i { border-top-style: dashed; }
+.relation-legend-item.open i { border-top-style: dotted; }
+.relation-legend-item.separation i { border-top-style: dotted; }
+.relation-legend-item.conceptual i { border-top-style: dashed; }
+
+.graph-diagnostics-panel {
+  right: 12px;
+  bottom: 14px;
+  width: 300px;
+  padding: 10px;
+}
+
+.graph-diagnostics-panel > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.graph-diagnostics-panel strong {
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.graph-diagnostics-panel span,
+.graph-diagnostics-panel dt {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.graph-diagnostics-panel dl {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 5px 8px;
+  margin: 0;
+}
+
+.graph-diagnostics-panel dd {
+  margin: 0;
+  color: #d9f7fd;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.35;
+}

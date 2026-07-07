@@ -1,0 +1,143 @@
+/* ── React Flow — Nodes, Edges, Labels ── */
+
+.complexity-node-label {
+  display: grid;
+  gap: 9px;
+  text-align: left;
+}
+
+.node-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.complexity-node-label strong {
+  font-size: 17px;
+  letter-spacing: -0.02em;
+}
+
+.complexity-node-label span {
+  color: #9eb6c0;
+  font-size: 10px;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.truth-pill {
+  border: 1px solid currentColor;
+  padding: 2px 4px;
+  font-family: var(--font-mono);
+  font-size: 8px !important;
+  line-height: 1.15 !important;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.truth-pill.green { color: var(--green); }
+.truth-pill.cyan { color: var(--cyan); }
+.truth-pill.purple { color: var(--purple); }
+.truth-pill.red { color: var(--red); }
+.truth-pill.yellow { color: var(--yellow); }
+
+.misconception-node-badge {
+  width: fit-content;
+  border: 1px solid currentColor;
+  padding: 2px 5px;
+  font-family: var(--font-mono);
+  font-size: 8px !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.08em;
+}
+
+.misconception-node-badge.low { color: var(--cyan); }
+.misconception-node-badge.medium { color: var(--yellow); }
+.misconception-node-badge.high { color: #ff9f1c; }
+.misconception-node-badge.critical { color: var(--red); }
+
+.react-flow__node {
+  backdrop-filter: blur(10px);
+}
+
+.complexity-flow-node-content {
+  display: grid;
+  min-height: 74px;
+  padding: 12px;
+}
+
+.react-flow__handle {
+  width: 7px;
+  height: 7px;
+  background: var(--cyan);
+  border-color: #031014;
+}
+
+.complexity-card-handle {
+  width: 9px !important;
+  height: 9px !important;
+  border: 1px solid rgba(3, 16, 20, 0.98) !important;
+  background: var(--cyan) !important;
+  box-shadow: 0 0 10px rgba(50, 230, 255, 0.55);
+  opacity: 0.9;
+}
+
+.complexity-card-handle.top,
+.complexity-card-handle.bottom {
+  left: 50%;
+}
+
+.complexity-card-handle.left,
+.complexity-card-handle.right {
+  top: 50%;
+}
+
+.react-flow__controls,
+.react-flow__minimap {
+  border: 1px solid var(--border) !important;
+  background: rgba(3, 5, 10, 0.9) !important;
+}
+
+.react-flow__controls-button {
+  background: rgba(8, 13, 24, 0.96) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: var(--text) !important;
+}
+
+.react-flow__edge-textbg {
+  stroke: rgba(50, 230, 255, 0.16);
+}
+
+.complexity-edge-label {
+  display: inline-flex;
+  max-width: 170px;
+  border: 1px solid rgba(50, 230, 255, 0.12);
+  background: rgba(3, 5, 10, 0.88);
+  padding: 2px 5px;
+  color: inherit;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.15;
+  white-space: normal;
+  text-align: center;
+  pointer-events: auto;
+}
+
+.complexity-edge-label.selected {
+  border-color: var(--yellow);
+  color: var(--yellow);
+  box-shadow: 0 0 12px rgba(255, 209, 102, 0.28);
+}
+
+.technical-flow::before {
+  content: "COMPLEXITY GRAPH / LOCAL DATA";
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+  z-index: 4;
+  color: rgba(125, 245, 255, 0.22);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  pointer-events: none;
+}

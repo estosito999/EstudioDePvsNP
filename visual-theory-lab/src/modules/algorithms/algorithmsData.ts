@@ -1,0 +1,198 @@
+import type { AlgorithmId, AlgorithmMeta } from './algorithmTypes';
+
+const graphNodes = [
+  { id: 'A', label: 'A', x: 70, y: 95 },
+  { id: 'B', label: 'B', x: 205, y: 45 },
+  { id: 'C', label: 'C', x: 205, y: 160 },
+  { id: 'D', label: 'D', x: 350, y: 95 },
+];
+
+const weightedEdges = [
+  { id: 'A-B', source: 'A', target: 'B', weight: 2 },
+  { id: 'A-C', source: 'A', target: 'C', weight: 5 },
+  { id: 'B-C', source: 'B', target: 'C', weight: 1 },
+  { id: 'B-D', source: 'B', target: 'D', weight: 4 },
+  { id: 'C-D', source: 'C', target: 'D', weight: 1 },
+];
+
+const flowEdges = [
+  { id: 'S-A', source: 'A', target: 'B', capacity: 3, flow: 0 },
+  { id: 'S-B', source: 'A', target: 'C', capacity: 2, flow: 0 },
+  { id: 'A-T', source: 'B', target: 'D', capacity: 2, flow: 0 },
+  { id: 'B-T', source: 'C', target: 'D', capacity: 4, flow: 0 },
+  { id: 'A-B', source: 'B', target: 'C', capacity: 1, flow: 0 },
+];
+
+const references = (symbol: string) => [
+  {
+    label: 'Datos del algoritmo',
+    path: 'src/modules/algorithms/algorithmsData.ts',
+    module: 'Classic Algorithms Lab',
+    symbol,
+    description: 'Define grafo de ejemplo, pasos, codigo visible, complejidades, estructuras internas y errores comunes.',
+  },
+  {
+    label: 'Visualizador de algoritmos',
+    path: 'src/components/algorithms/GraphAlgorithmVisualizer.tsx',
+    module: 'Classic Algorithms Lab',
+    symbol: 'GraphAlgorithmVisualizer',
+    description: 'Renderiza grafo, pasos, estructuras internas, flujo residual y linea activa de codigo.',
+  },
+];
+
+export const algorithms: AlgorithmMeta[] = [
+  {
+    id: 'dfs',
+    name: 'DFS',
+    category: 'traversal',
+    internalStructure: 'stack / recursion stack',
+    timeComplexity: 'O(V + E)',
+    spaceComplexity: 'O(V)',
+    worksWhen: 'Exploracion, componentes conectadas, topological sort y deteccion de ciclos.',
+    failsWhen: 'No garantiza camino mas corto en grafos no ponderados.',
+    truthStatus: 'theorem',
+    misconception: { error: 'Creer que DFS siempre encuentra el camino mas corto.', correction: 'DFS explora profundidad; BFS encuentra caminos minimos en grafos no ponderados.', severity: 'high' },
+    nodes: graphNodes,
+    edges: weightedEdges.map(({ weight: _weight, ...edge }) => edge),
+    codeLines: ['def dfs(u):', '    visited.add(u)', '    for v in graph[u]:', '        if v not in visited:', '            dfs(v)'],
+    steps: [
+      { id: 'start', title: 'Iniciar en A', description: 'A entra al recursion stack.', activeNodeId: 'A', activeLine: 1, structure: ['A'], event: 'Nodo visitado: A' },
+      { id: 'edge-ab', title: 'Explorar A-B', description: 'DFS toma una rama profunda.', activeNodeId: 'B', activeEdgeId: 'A-B', activeLine: 4, structure: ['A', 'B'], event: 'Nodo visitado: B' },
+      { id: 'edge-bc', title: 'Explorar B-C', description: 'Continua antes de volver.', activeNodeId: 'C', activeEdgeId: 'B-C', activeLine: 4, structure: ['A', 'B', 'C'], event: 'Nodo visitado: C' },
+      { id: 'edge-cd', title: 'Explorar C-D', description: 'Llega a D por profundidad.', activeNodeId: 'D', activeEdgeId: 'C-D', activeLine: 4, structure: ['A', 'B', 'C', 'D'], event: 'Nodo visitado: D' },
+    ],
+    codeReferences: references('dfs'),
+  },
+  {
+    id: 'bfs',
+    name: 'BFS',
+    category: 'traversal',
+    internalStructure: 'queue',
+    timeComplexity: 'O(V + E)',
+    spaceComplexity: 'O(V)',
+    worksWhen: 'Caminos minimos en grafos no ponderados o con pesos uniformes.',
+    failsWhen: 'No sirve para pesos arbitrarios sin modificar el modelo.',
+    truthStatus: 'theorem',
+    misconception: { error: 'Usar BFS para caminos con pesos arbitrarios.', correction: 'BFS funciona para caminos minimos en grafos no ponderados o pesos uniformes.', severity: 'high' },
+    nodes: graphNodes,
+    edges: weightedEdges.map(({ weight: _weight, ...edge }) => edge),
+    codeLines: ['queue = [source]', 'while queue:', '    u = queue.pop(0)', '    for v in graph[u]:', '        if v not in seen: queue.append(v)'],
+    steps: [
+      { id: 'enqueue-a', title: 'Encolar A', description: 'La cola inicia con el origen.', activeNodeId: 'A', activeLine: 0, structure: ['A'], event: 'Nodo visitado: A' },
+      { id: 'visit-bc', title: 'Expandir A', description: 'B y C entran a la cola por niveles.', activeNodeId: 'A', activeEdgeId: 'A-B', activeLine: 4, structure: ['B', 'C'], event: 'Nodo visitado: B' },
+      { id: 'visit-b', title: 'Procesar B', description: 'D se descubre desde B.', activeNodeId: 'B', activeEdgeId: 'B-D', activeLine: 4, structure: ['C', 'D'], event: 'Nodo visitado: D' },
+    ],
+    codeReferences: references('bfs'),
+  },
+  {
+    id: 'dijkstra',
+    name: 'Dijkstra',
+    category: 'shortest-path',
+    internalStructure: 'priority queue + distance table',
+    timeComplexity: 'O((V + E) log V)',
+    spaceComplexity: 'O(V)',
+    worksWhen: 'Pesos no negativos.',
+    failsWhen: 'Puede fallar con pesos negativos.',
+    truthStatus: 'theorem',
+    misconception: { error: 'Usar Dijkstra con pesos negativos.', correction: 'Dijkstra asume pesos no negativos. Para pesos negativos usa Bellman-Ford.', severity: 'critical' },
+    nodes: graphNodes,
+    edges: weightedEdges,
+    codeLines: ['pq = [(0, source)]', 'while pq:', '    d, u = heappop(pq)', '    for v, w in graph[u]:', '        relax(u, v, w)'],
+    steps: [
+      { id: 'start', title: 'Inicializar', description: 'dist[A]=0, resto infinito.', activeNodeId: 'A', activeLine: 0, structure: ['(0,A)'], table: { A: 0, B: '∞', C: '∞', D: '∞' }, event: 'Nodo visitado: A' },
+      { id: 'relax-ab', title: 'Relajar A-B', description: 'B obtiene distancia 2.', activeEdgeId: 'A-B', activeNodeId: 'B', activeLine: 4, structure: ['(2,B)', '(5,C)'], table: { A: 0, B: 2, C: 5, D: '∞' }, event: 'Arista relajada' },
+      { id: 'relax-bc', title: 'Relajar B-C', description: 'C mejora a 3.', activeEdgeId: 'B-C', activeNodeId: 'C', activeLine: 4, structure: ['(3,C)', '(6,D)'], table: { A: 0, B: 2, C: 3, D: 6 }, event: 'Arista relajada' },
+      { id: 'relax-cd', title: 'Relajar C-D', description: 'D mejora a 4.', activeEdgeId: 'C-D', activeNodeId: 'D', activeLine: 4, structure: ['(4,D)'], table: { A: 0, B: 2, C: 3, D: 4 }, event: 'Arista relajada' },
+    ],
+    codeReferences: references('dijkstra'),
+  },
+  {
+    id: 'bellman-ford',
+    name: 'Bellman-Ford',
+    category: 'shortest-path',
+    internalStructure: 'distance table + edge relaxations',
+    timeComplexity: 'O(VE)',
+    spaceComplexity: 'O(V)',
+    worksWhen: 'Pesos negativos sin ciclos negativos alcanzables; tambien detecta ciclos negativos.',
+    failsWhen: 'No produce distancias finitas si existe ciclo negativo alcanzable.',
+    truthStatus: 'theorem',
+    misconception: { error: 'Pensar que Bellman-Ford solo sirve si hay ciclos negativos.', correction: 'Sirve para pesos negativos y ademas detecta ciclos negativos alcanzables.', severity: 'medium' },
+    nodes: graphNodes,
+    edges: weightedEdges,
+    codeLines: ['for _ in range(V - 1):', '    for u, v, w in edges:', '        if dist[u] + w < dist[v]:', '            dist[v] = dist[u] + w'],
+    steps: [
+      { id: 'init', title: 'Inicializar', description: 'dist[A]=0.', activeNodeId: 'A', activeLine: 0, structure: ['pass 1'], table: { A: 0, B: '∞', C: '∞', D: '∞' }, event: 'Nodo visitado: A' },
+      { id: 'ab', title: 'Relajar A-B', description: 'B queda en 2.', activeEdgeId: 'A-B', activeLine: 3, structure: ['A-B'], table: { A: 0, B: 2, C: '∞', D: '∞' }, event: 'Arista relajada' },
+      { id: 'bc', title: 'Relajar B-C', description: 'C queda en 3.', activeEdgeId: 'B-C', activeLine: 3, structure: ['B-C'], table: { A: 0, B: 2, C: 3, D: '∞' }, event: 'Arista relajada' },
+      { id: 'cd', title: 'Relajar C-D', description: 'D queda en 4.', activeEdgeId: 'C-D', activeLine: 3, structure: ['C-D'], table: { A: 0, B: 2, C: 3, D: 4 }, event: 'Arista relajada' },
+    ],
+    codeReferences: references('bellmanFord'),
+  },
+  {
+    id: 'ford-fulkerson',
+    name: 'Ford-Fulkerson',
+    category: 'max-flow',
+    internalStructure: 'residual graph + augmenting path',
+    timeComplexity: 'O(E · max_flow) for integral capacities',
+    spaceComplexity: 'O(V + E)',
+    worksWhen: 'Capacidades integrales y caminos aumentantes encontrados iterativamente.',
+    failsWhen: 'La eleccion de caminos puede ser ineficiente; con capacidades irracionales puede no terminar.',
+    truthStatus: 'theorem',
+    misconception: { error: 'Creer que cualquier eleccion de camino aumentante siempre es eficiente.', correction: 'La eleccion del camino afecta rendimiento; Edmonds-Karp usa BFS para acotar el tiempo.', severity: 'high' },
+    nodes: graphNodes,
+    edges: flowEdges,
+    codeLines: ['while exists augmenting_path:', '    delta = bottleneck(path)', '    augment(path, delta)', '    update_residual_graph()'],
+    steps: [
+      { id: 'path1', title: 'Camino aumentante', description: 'A-B-D con cuello 2.', activeEdgeId: 'S-A', activeLine: 1, structure: ['A-B-D'], augmentingPath: ['A', 'B', 'D'], maxFlow: 2, residualEdges: flowEdges, event: 'Camino aumentante encontrado' },
+      { id: 'path2', title: 'Segundo camino', description: 'A-C-D con cuello 2.', activeEdgeId: 'S-B', activeLine: 2, structure: ['A-C-D'], augmentingPath: ['A', 'C', 'D'], maxFlow: 4, residualEdges: flowEdges.map((edge) => ({ ...edge, flow: edge.id.includes('S') ? 2 : edge.flow })), event: 'Camino aumentante encontrado' },
+    ],
+    codeReferences: references('fordFulkerson'),
+  },
+  {
+    id: 'edmonds-karp',
+    name: 'Edmonds-Karp',
+    category: 'max-flow',
+    internalStructure: 'BFS on residual graph + augmenting path',
+    timeComplexity: 'O(VE^2)',
+    spaceComplexity: 'O(V + E)',
+    worksWhen: 'Flujo maximo con caminos aumentantes mas cortos en numero de aristas.',
+    failsWhen: 'Puede ser mas lento que algoritmos modernos de flujo en grafos grandes.',
+    truthStatus: 'theorem',
+    misconception: { error: 'Pensar que Edmonds-Karp es distinto en objetivo a Ford-Fulkerson.', correction: 'Es una regla especifica de Ford-Fulkerson: elegir caminos aumentantes mediante BFS.', severity: 'medium' },
+    nodes: graphNodes,
+    edges: flowEdges,
+    codeLines: ['while bfs(residual, s, t):', '    path = parent_chain(t)', '    delta = bottleneck(path)', '    augment(path, delta)'],
+    steps: [
+      { id: 'bfs1', title: 'BFS residual', description: 'Encuentra A-B-D.', activeEdgeId: 'S-A', activeLine: 0, structure: ['queue: A,B,D'], augmentingPath: ['A', 'B', 'D'], maxFlow: 2, residualEdges: flowEdges, event: 'Camino aumentante encontrado' },
+      { id: 'bfs2', title: 'BFS residual', description: 'Encuentra A-C-D.', activeEdgeId: 'S-B', activeLine: 3, structure: ['queue: A,C,D'], augmentingPath: ['A', 'C', 'D'], maxFlow: 4, residualEdges: flowEdges, event: 'Camino aumentante encontrado' },
+    ],
+    codeReferences: references('edmondsKarp'),
+  },
+  {
+    id: 'floyd-warshall',
+    name: 'Floyd-Warshall',
+    category: 'dynamic-programming',
+    internalStructure: 'distance matrix',
+    timeComplexity: 'O(V^3)',
+    spaceComplexity: 'O(V^2)',
+    worksWhen: 'Todos los pares de caminos mas cortos, incluso con pesos negativos sin ciclos negativos.',
+    failsWhen: 'Costoso en memoria para grafos grandes; no tolera ciclos negativos para distancias bien definidas.',
+    truthStatus: 'theorem',
+    misconception: { error: 'Usarlo sin considerar memoria.', correction: 'Requiere matriz O(V^2), lo cual puede ser costoso para grafos grandes.', severity: 'medium' },
+    nodes: graphNodes,
+    edges: weightedEdges,
+    codeLines: ['for k in vertices:', '    for i in vertices:', '        for j in vertices:', '            dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])'],
+    steps: [
+      { id: 'k-a', title: 'k = A', description: 'Usar A como intermediario.', activeNodeId: 'A', activeLine: 0, structure: ['k=A'], matrix: [['0', '2', '5', '∞'], ['∞', '0', '1', '4'], ['∞', '∞', '0', '1'], ['∞', '∞', '∞', '0']], event: 'Matriz Floyd-Warshall actualizada' },
+      { id: 'k-b', title: 'k = B', description: 'C mejora via B.', activeNodeId: 'B', activeLine: 3, structure: ['k=B'], matrix: [['0', '2', '3', '6'], ['∞', '0', '1', '4'], ['∞', '∞', '0', '1'], ['∞', '∞', '∞', '0']], event: 'Matriz Floyd-Warshall actualizada' },
+      { id: 'k-c', title: 'k = C', description: 'D mejora via C.', activeNodeId: 'C', activeLine: 3, structure: ['k=C'], matrix: [['0', '2', '3', '4'], ['∞', '0', '1', '2'], ['∞', '∞', '0', '1'], ['∞', '∞', '∞', '0']], event: 'Matriz Floyd-Warshall actualizada' },
+    ],
+    codeReferences: references('floydWarshall'),
+  },
+];
+
+export const defaultAlgorithmId: AlgorithmId = 'dfs';
+
+export function getAlgorithm(id: AlgorithmId) {
+  return algorithms.find((algorithm) => algorithm.id === id) ?? algorithms[0];
+}

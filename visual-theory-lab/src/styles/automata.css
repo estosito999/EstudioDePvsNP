@@ -1,0 +1,241 @@
+/* ── Automata / Turing Machine Module ── */
+
+.automata-module {
+  overflow: hidden;
+}
+
+.automata-model-selector {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.automata-model-card {
+  display: grid;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--text);
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.automata-model-card.active {
+  border-color: var(--purple);
+  background: linear-gradient(90deg, rgba(182, 130, 255, 0.12), rgba(182, 130, 255, 0.025));
+  box-shadow: inset 2px 0 0 var(--purple);
+}
+
+.automata-model-card strong {
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.automata-model-card span {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.turing-visual-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  gap: 12px;
+}
+
+.turing-visual-grid > .configuration-history-card {
+  grid-column: 1 / -1;
+}
+
+.automata-copy,
+.automata-placeholder-card p,
+.automata-concept-map p {
+  margin: 0 0 10px;
+  color: #c8dbe2;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.tm-status {
+  border: 1px solid currentColor;
+  padding: 5px 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.tm-status.running { color: var(--cyan); }
+.tm-status.accepted { color: var(--green); }
+.tm-status.rejected { color: var(--red); }
+
+.tm-input-label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tm-input-label input {
+  border: 1px solid rgba(50, 230, 255, 0.22);
+  background: rgba(3, 5, 10, 0.88);
+  color: var(--text);
+  padding: 8px;
+  font-family: var(--font-mono);
+}
+
+.turing-tape {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  margin: 12px 0;
+  padding-bottom: 4px;
+}
+
+.tape-cell {
+  display: grid;
+  width: 54px;
+  min-width: 54px;
+  height: 58px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.tape-cell strong {
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 18px;
+}
+
+.tape-cell span {
+  color: var(--yellow);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+}
+
+.tape-cell.active {
+  border-color: var(--yellow);
+  background: rgba(255, 209, 102, 0.08);
+  box-shadow: 0 0 14px rgba(255, 209, 102, 0.12);
+}
+
+.tm-readout-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.tm-readout-grid div {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 8px;
+}
+
+.tm-readout-grid span {
+  display: block;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tm-readout-grid strong {
+  color: var(--cyan);
+  font-family: var(--font-mono);
+}
+
+.transition-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.transition-table th,
+.transition-table td {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 7px;
+  text-align: left;
+}
+
+.transition-table th {
+  color: var(--cyan);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.transition-table td {
+  color: #d9f7fd;
+}
+
+.transition-table tr.active td {
+  color: var(--yellow);
+  background: rgba(255, 209, 102, 0.08);
+}
+
+.configuration-history-list {
+  display: grid;
+  gap: 6px;
+  max-height: 180px;
+  overflow: auto;
+}
+
+.configuration-history-list code {
+  border: 1px solid rgba(50, 230, 255, 0.12);
+  color: #c8dbe2;
+  padding: 6px;
+  font-size: 11px;
+}
+
+.complexity-model-flow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.complexity-model-flow article,
+.automata-stub-grid article {
+  border: 1px solid rgba(182, 130, 255, 0.2);
+  background: rgba(182, 130, 255, 0.04);
+  padding: 10px;
+}
+
+.complexity-model-flow strong,
+.automata-stub-grid strong {
+  display: block;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.complexity-model-flow span {
+  display: block;
+  margin-top: 8px;
+  color: var(--green);
+  font-family: var(--font-mono);
+  font-size: 18px;
+}
+
+.automata-stub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 8px;
+}
+
+.automata-stub-grid span {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+}

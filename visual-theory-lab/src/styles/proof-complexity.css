@@ -1,0 +1,120 @@
+/* ── Proof Complexity / Resolution Module ── */
+
+.proof-complexity-module {
+  overflow: hidden;
+}
+
+.proof-system-selector {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.proof-system-card {
+  display: grid;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--text);
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.proof-system-card.active {
+  border-color: var(--yellow);
+  background: linear-gradient(90deg, rgba(255, 209, 102, 0.12), rgba(255, 209, 102, 0.025));
+  box-shadow: inset 2px 0 0 var(--yellow);
+}
+
+.proof-system-card strong {
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.proof-system-card span {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.resolution-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(310px, 0.75fr);
+  gap: 12px;
+}
+
+.resolution-grid > .proof-complexity-example-card {
+  grid-column: 1 / -1;
+}
+
+.resolution-svg {
+  width: 100%;
+  height: 370px;
+  border: 1px solid rgba(50, 230, 255, 0.14);
+  background:
+    linear-gradient(rgba(50, 230, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(50, 230, 255, 0.035) 1px, transparent 1px),
+    rgba(3, 5, 10, 0.7);
+  background-size: 20px 20px;
+}
+
+.resolution-arrow-line {
+  stroke: rgba(255, 209, 102, 0.55);
+  stroke-width: 2;
+}
+
+.resolution-node rect {
+  fill: rgba(5, 8, 14, 0.96);
+  stroke: rgba(50, 230, 255, 0.35);
+  stroke-width: 1.4;
+}
+
+.resolution-node.derived rect {
+  stroke: rgba(110, 255, 158, 0.5);
+}
+
+.resolution-node.contradiction rect {
+  stroke: rgba(255, 77, 109, 0.75);
+  filter: drop-shadow(0 0 6px rgba(255, 77, 109, 0.35));
+}
+
+.resolution-node.active rect {
+  stroke: var(--yellow);
+  stroke-width: 2.4;
+}
+
+.resolution-node text {
+  fill: var(--text);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-anchor: middle;
+}
+
+.resolution-rule-box {
+  border: 1px solid rgba(255, 209, 102, 0.22);
+  background: rgba(255, 209, 102, 0.05);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.resolution-rule-box code,
+.proof-complexity-example-card pre {
+  color: var(--yellow);
+  font-family: var(--font-mono);
+}
+
+.resolution-step-card p {
+  color: #c8dbe2;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.proof-complexity-example-card pre {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+}

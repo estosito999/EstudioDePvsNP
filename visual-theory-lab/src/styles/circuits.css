@@ -1,0 +1,130 @@
+/* ── Circuit Module ── */
+
+.circuit-module {
+  overflow: hidden;
+}
+
+.circuit-function-selector {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.circuit-function-card {
+  display: grid;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--text);
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.circuit-function-card.active {
+  border-color: var(--purple);
+  background: linear-gradient(90deg, rgba(182, 130, 255, 0.12), rgba(182, 130, 255, 0.025));
+  box-shadow: inset 2px 0 0 var(--purple);
+}
+
+.circuit-function-card strong,
+.circuit-layer > span,
+.circuit-gate strong,
+.circuit-gate small {
+  font-family: var(--font-mono);
+}
+
+.circuit-function-card span {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.circuit-lab-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 12px;
+}
+
+.circuit-lab-grid > .truth-table-card,
+.circuit-lab-grid > .circuit-model-card,
+.circuit-lab-grid > .lower-bounds-card {
+  grid-column: 1 / -1;
+}
+
+.circuit-layer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.circuit-layer {
+  display: grid;
+  gap: 8px;
+  border: 1px solid rgba(50, 230, 255, 0.14);
+  background: rgba(3, 5, 10, 0.55);
+  padding: 10px;
+}
+
+.circuit-layer > span {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.circuit-gate {
+  display: grid;
+  gap: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.025);
+  padding: 8px;
+}
+
+.circuit-gate.input { border-color: rgba(50, 230, 255, 0.28); }
+.circuit-gate.and { border-color: rgba(110, 255, 158, 0.28); }
+.circuit-gate.or { border-color: rgba(182, 130, 255, 0.28); }
+.circuit-gate.not { border-color: rgba(255, 209, 102, 0.34); }
+.circuit-gate.true { box-shadow: inset 2px 0 0 var(--green); }
+.circuit-gate.false { box-shadow: inset 2px 0 0 var(--red); }
+
+.circuit-gate strong {
+  color: var(--text);
+  font-size: 12px;
+}
+
+.circuit-gate small {
+  color: var(--cyan);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+.circuit-gate code {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.circuit-truth-table tr.ok td {
+  color: var(--green);
+}
+
+.circuit-truth-table tr.bad td {
+  color: var(--red);
+}
+
+.lower-bounds-card p,
+.circuit-model-card p {
+  margin: 0;
+  color: #c8dbe2;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.lower-bounds-card .concept-message strong {
+  display: block;
+  margin-bottom: 5px;
+  font-family: var(--font-mono);
+}

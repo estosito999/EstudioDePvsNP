@@ -1,0 +1,249 @@
+/* ── Set Venn View ── */
+
+.set-venn-shell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+  overflow: auto;
+  padding: 18px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(50, 230, 255, 0.08), transparent 30%),
+    radial-gradient(circle at 80% 10%, rgba(255, 209, 102, 0.08), transparent 28%),
+    rgba(2, 5, 10, 0.82);
+}
+
+.set-venn-header,
+.set-venn-selection-card,
+.set-venn-group {
+  border: 1px solid rgba(50, 230, 255, 0.14);
+  background: rgba(3, 5, 10, 0.68);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.set-venn-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px;
+}
+
+.set-venn-header h2 {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 20px;
+}
+
+.set-venn-header p:not(.eyebrow),
+.set-venn-group-title span,
+.set-venn-selection-card p,
+.set-venn-selection-card span {
+  margin: 6px 0 0;
+  color: #c8dbe2;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.set-venn-status-row {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: flex-end;
+}
+
+.set-venn-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.set-venn-group {
+  display: flex;
+  flex-direction: column;
+  min-height: auto;
+  min-width: 0;
+  padding: 16px;
+  overflow: visible;
+}
+
+.set-venn-group-title {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.set-venn-group-title h3 {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 16px;
+}
+
+.set-venn-group-title span {
+  max-width: none;
+  text-align: left;
+}
+
+.set-venn-root-stack,
+.venn-child-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.set-venn-root-stack {
+  flex: 1;
+  min-height: 0;
+  overflow: visible;
+  padding: 4px 10px 14px 2px;
+}
+
+.venn-box {
+  --venn-color: var(--cyan);
+  display: grid;
+  gap: 14px;
+  min-height: 132px;
+  border: 1px solid color-mix(in srgb, var(--venn-color) 48%, transparent);
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--venn-color) 10%, transparent), rgba(3, 5, 10, 0.62)),
+    rgba(3, 5, 10, 0.72);
+  padding: 16px;
+  outline: none;
+  cursor: pointer;
+}
+
+.set-venn-group.formal-languages .venn-box {
+  --venn-color: var(--green);
+}
+
+.set-venn-group.complexity-decidability .venn-box {
+  --venn-color: var(--cyan);
+}
+
+.set-venn-group.grammars .venn-box {
+  --venn-color: var(--purple);
+}
+
+.venn-box .venn-box {
+  margin-left: 18px;
+  min-height: 116px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--venn-color) 8%, transparent), rgba(3, 5, 10, 0.74)),
+    rgba(3, 5, 10, 0.78);
+}
+
+.venn-box:hover,
+.venn-box.selected {
+  border-color: var(--yellow);
+  box-shadow: 0 0 20px rgba(255, 209, 102, 0.18), inset 0 0 18px rgba(255, 209, 102, 0.06);
+}
+
+.venn-box-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+}
+
+.venn-box-header strong {
+  display: block;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.venn-box-header span:not(.status-badge) {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.venn-marker-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.venn-marker {
+  border: 1px dashed rgba(255, 209, 102, 0.45);
+  background: rgba(255, 209, 102, 0.06);
+  color: var(--yellow);
+  padding: 4px 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+
+.venn-overlay-region-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 10px;
+  flex-shrink: 0;
+}
+
+.venn-overlay-card {
+  display: grid;
+  gap: 5px;
+  width: 100%;
+  border: 1px dashed rgba(255, 209, 102, 0.34);
+  border-radius: 10px;
+  background:
+    linear-gradient(90deg, rgba(255, 209, 102, 0.06), rgba(182, 130, 255, 0.04)),
+    rgba(3, 5, 10, 0.72);
+  color: var(--text);
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.venn-overlay-card.selected,
+.venn-overlay-card:hover {
+  border-color: var(--yellow);
+  box-shadow: 0 0 16px rgba(255, 209, 102, 0.16);
+}
+
+.venn-overlay-card strong {
+  color: var(--yellow);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.venn-overlay-card span,
+.venn-overlay-card small {
+  color: #c8dbe2;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.venn-overlay-card small {
+  color: var(--purple);
+}
+
+.set-venn-selection-card {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+}
+
+.set-venn-selection-card strong {
+  color: var(--yellow);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.set-venn-selection-card span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+}

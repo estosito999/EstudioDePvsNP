@@ -1,0 +1,235 @@
+/* ── Frontier Module ── */
+
+.frontier-module {
+  overflow: hidden;
+}
+
+.frontier-concept-banner {
+  align-items: center;
+}
+
+.frontier-concept-banner h2 {
+  max-width: 980px;
+  color: #e7fbff;
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+.frontier-legend {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.frontier-status {
+  border: 1px solid currentColor;
+  padding: 5px 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.frontier-status.open {
+  color: var(--yellow);
+  background: rgba(255, 209, 102, 0.08);
+}
+
+.frontier-status.barrier {
+  color: var(--red);
+  background: rgba(255, 77, 109, 0.08);
+}
+
+.frontier-selector-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.frontier-selector-group {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.025);
+  padding: 10px;
+}
+
+.frontier-selector-group.barrier {
+  border-color: rgba(255, 77, 109, 0.16);
+  background: rgba(255, 77, 109, 0.035);
+}
+
+.frontier-topic-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.frontier-selector-group.barrier .frontier-topic-list {
+  grid-template-columns: 1fr;
+}
+
+.frontier-topic-card {
+  display: grid;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(3, 5, 10, 0.62);
+  color: var(--text);
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.frontier-topic-card.active {
+  border-color: var(--yellow);
+  background: linear-gradient(90deg, rgba(255, 209, 102, 0.13), rgba(255, 209, 102, 0.025));
+  box-shadow: inset 2px 0 0 var(--yellow);
+}
+
+.frontier-topic-card.barrier.active {
+  border-color: var(--red);
+  background: linear-gradient(90deg, rgba(255, 77, 109, 0.13), rgba(255, 77, 109, 0.025));
+  box-shadow: inset 2px 0 0 var(--red);
+}
+
+.frontier-topic-card strong {
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.frontier-topic-card span {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.frontier-main-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+  gap: 12px;
+}
+
+.frontier-detail-card {
+  grid-row: span 2;
+}
+
+.frontier-fact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.frontier-fact-card {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(3, 5, 10, 0.62);
+  padding: 12px;
+}
+
+.frontier-fact-card.known {
+  border-color: rgba(110, 255, 158, 0.2);
+}
+
+.frontier-fact-card.unknown {
+  border-color: rgba(255, 209, 102, 0.2);
+}
+
+.frontier-fact-card.mistake {
+  border-color: rgba(255, 77, 109, 0.2);
+}
+
+.frontier-fact-card h3 {
+  margin: 0 0 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.frontier-fact-card.known h3 {
+  color: var(--green);
+}
+
+.frontier-fact-card.unknown h3 {
+  color: var(--yellow);
+}
+
+.frontier-fact-card.mistake h3 {
+  color: var(--red);
+}
+
+.frontier-fact-card ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 17px;
+}
+
+.frontier-fact-card li,
+.frontier-explanation-grid p,
+.frontier-boundary-map strong {
+  color: #c8dbe2;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.frontier-explanation-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.frontier-explanation-grid article,
+.frontier-boundary-map article {
+  border: 1px solid rgba(50, 230, 255, 0.14);
+  background: rgba(50, 230, 255, 0.035);
+  padding: 12px;
+}
+
+.frontier-explanation-grid article.pnp-relation {
+  border-color: rgba(182, 130, 255, 0.22);
+  background: rgba(182, 130, 255, 0.045);
+}
+
+.frontier-explanation-grid span,
+.frontier-boundary-map span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.frontier-explanation-grid p {
+  margin: 0;
+}
+
+.frontier-boundary-map {
+  display: grid;
+  gap: 10px;
+}
+
+.frontier-boundary-map article.proved {
+  border-color: rgba(110, 255, 158, 0.22);
+  background: rgba(110, 255, 158, 0.045);
+}
+
+.frontier-boundary-map article.open {
+  border-color: rgba(255, 209, 102, 0.22);
+  background: rgba(255, 209, 102, 0.045);
+}
+
+.frontier-boundary-map article.barrier {
+  border-color: rgba(255, 77, 109, 0.22);
+  background: rgba(255, 77, 109, 0.045);
+}
+
+.frontier-boundary-map strong {
+  display: block;
+  font-family: var(--font-mono);
+}

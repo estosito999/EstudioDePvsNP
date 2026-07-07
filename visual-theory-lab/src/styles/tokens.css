@@ -1,0 +1,38 @@
+:root {
+  color-scheme: dark;
+
+  /* ── Core palette ── */
+  --bg: #03050a;
+  --panel: rgba(7, 11, 20, 0.94);
+  --panel-strong: rgba(10, 16, 29, 0.98);
+  --border: rgba(95, 245, 255, 0.18);
+  --border-strong: rgba(95, 245, 255, 0.36);
+  --text: #e7fbff;
+  --muted: #7d99a8;
+  --green: #6eff9e;
+  --cyan: #32e6ff;
+  --purple: #b682ff;
+  --red: #ff4d6d;
+  --yellow: #ffd166;
+
+  /* ── Typography ── */
+  --font-mono: "SFMono-Regular", "Cascadia Code", "JetBrains Mono", Consolas, monospace;
+  --text-xs: clamp(0.5625rem, 1.2vw, 0.6875rem);
+  --text-sm: clamp(0.625rem, 1.5vw, 0.75rem);
+  --text-base: clamp(0.75rem, 2vw, 0.875rem);
+  --text-lg: clamp(0.875rem, 2.5vw, 1rem);
+
+  /* ── Spacing ── */
+  --space-xs: clamp(4px, 0.6vw, 8px);
+  --space-sm: clamp(6px, 1vw, 10px);
+  --space-md: clamp(8px, 1.2vw, 14px);
+  --space-lg: clamp(10px, 1.5vw, 16px);
+
+  /* ── Radius ── */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* ── Touch ── */
+  --touch-min: 44px;
+}
